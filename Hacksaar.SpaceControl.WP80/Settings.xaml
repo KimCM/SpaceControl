@@ -1,0 +1,92 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Hacksaar.SpaceControl.WP80.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Hacksaar.SpaceControl.WP80"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <local:AppSettings x:Key="appSettings"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Space Control" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+
+            <ScrollViewer MaxHeight="600">
+                <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" MinWidth="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.Settings_Hostname, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Port" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Source={StaticResource appSettings}, Path=Hostname, Mode=TwoWay}" />
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Source={StaticResource appSettings}, Path=Port, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_Username, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Source={StaticResource appSettings}, Path=Username, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_Password, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <PasswordBox Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" Password="{Binding Source={StaticResource appSettings}, Path=Password, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_PrivateKeyFile, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Row="7" IsEnabled="False" Grid.Column="0" x:Name="PrivateKeyFilePath" Text="{Binding Source={StaticResource appSettings}, Path=PrivateKeyFilePath, Mode=TwoWay}" />
+                    <Button Grid.Row="7" Grid.Column="3" Click="FilePickerPrivateKeyFile_Click">
+                        <Image Source="Assets/AppBar/upload.png" Width="26" />
+                    </Button>
+
+                    <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_Passphrase, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <PasswordBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Password="{Binding Source={StaticResource appSettings}, Path=PrivateKeyPassphrase, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_SpaceApiUrl, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Source={StaticResource appSettings}, Path=SpaceApiUrl, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_LogSeverity, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="13" IsEnabled="False" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Source={StaticResource appSettings}, Path=LogSeverity, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=LocalizedResources.Settings_TimeoutInSeconds, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Source={StaticResource appSettings}, Path=TimeoutInSeconds, Mode=TwoWay}" />
+                </Grid>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>
