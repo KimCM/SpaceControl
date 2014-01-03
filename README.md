@@ -10,7 +10,7 @@ If the door is closed, which means you are the first member joining the space, t
 
 > Please ensure that your phone is connected to the wireless network before tapping `buzz` or `unlock`. It is not possible (at least with this app) to open the door if you are not connected to the wireless network.
   
-![](Screenshots/request_doorstate.png)
+![](Screenshots/request_doorstate.png)&nbsp;
 ![](Screenshots/buzz.png)
 
 ## Configuration
